@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نبض NabdNet | كابستون الفريق 406212</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F7F8;--card:#fff;--ink:#12303A;--mut:#4F6B73;--line:#D3E1E4;--pulse:#0B8A86;--ok:#2E8B57;--warn:#B07A00;--bad:#D03A2E;--soft:#E3F0F1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1A1F;--card:#14262C;--ink:#E5F0F2;--mut:#9DB7BD;--line:#244047;--pulse:#3CC7C0;--ok:#4CC27F;--warn:#E3B341;--bad:#F0695C;--soft:#183339}}
+:root[data-theme="dark"]{--bg:#0D1A1F;--card:#14262C;--ink:#E5F0F2;--mut:#9DB7BD;--line:#244047;--pulse:#3CC7C0;--ok:#4CC27F;--warn:#E3B341;--bad:#F0695C;--soft:#183339}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.9 "IBM Plex Sans Arabic",Tahoma,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line)}
+nav{max-width:1040px;margin:auto;display:flex;gap:22px;align-items:center;padding:12px 20px;overflow-x:auto;white-space:nowrap}
+nav b{font-weight:700;color:var(--pulse);margin-inline-end:auto}
+nav a{color:var(--mut);text-decoration:none;font-size:15px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--pulse);outline-offset:3px}
+main,footer{max-width:1040px;margin:auto;padding:0 20px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h1,h2,h3{line-height:1.3;margin:0 0 14px}
+h1{font-size:clamp(3.4rem,11vw,6.4rem);font-weight:700;letter-spacing:0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:600}
+p{margin:0 0 14px;max-width:62ch}
+.mut{color:var(--mut)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:48px 0 56px;border:0}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 14px;font-size:14px;color:var(--mut);margin:0 0 14px 8px}
+.lead{font-size:1.2rem}
+#card{--c:var(--ok);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+#card[data-s=warn]{--c:var(--warn)}#card[data-s=bad]{--c:var(--bad)}
+.ring{display:flex;align-items:center;gap:18px}
+.ring svg{width:128px;height:128px;flex:none}
+#num{font-size:2.6rem;font-weight:700;color:var(--c);line-height:1}
+#lab{font-weight:600}
+.ecg{width:100%;height:60px;margin:14px 0 6px;display:block}
+.ecg path{fill:none;stroke:var(--c);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:.45 .55;animation:sc 2.2s linear infinite}
+@keyframes sc{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.alert{border-inline-start:4px solid var(--bad);background:var(--soft);padding:10px 14px;border-radius:8px;margin:10px 0;font-size:15px}
+button{font:600 15px "IBM Plex Sans Arabic",Tahoma,sans-serif;border:0;border-radius:10px;padding:10px 18px;cursor:pointer;background:var(--pulse);color:#fff}
+button:disabled{opacity:.45;cursor:default}
+button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+[hidden]{display:none!important}
+.needs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px 28px;margin-top:20px}
+.needs div{border-inline-start:3px solid var(--pulse);padding-inline-start:14px}
+ol.flow{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;counter-reset:s}
+ol.flow li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:600}
+ol.flow li::before{content:counter(s);display:block;color:var(--pulse);font-size:1.4rem;font-weight:700}
+.scale{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px}
+.scale span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-inline-end:8px;background:var(--k)}
+.tw{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{text-align:start;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-weight:600}
+td.n{direction:ltr;text-align:right}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 22px}
+.chips span{background:var(--soft);border-radius:8px;padding:2px 12px;font-size:15px;direction:ltr}
+.sdg{display:grid;gap:16px;margin-top:18px}
+.sdg div{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:baseline}
+.sdg b{font-size:1.5rem;color:var(--pulse)}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-top:22px}
+.m{display:flex;gap:12px;align-items:center}
+.m i{flex:none;width:46px;height:46px;border-radius:50%;background:var(--pulse);color:#fff;display:grid;place-items:center;font:700 1.2rem "IBM Plex Sans Arabic",sans-serif}
+.m b{display:block;line-height:1.4}
+.m small{color:var(--mut);direction:ltr;display:block}
+.no{font-size:clamp(2.4rem,8vw,4rem);font-weight:700;color:var(--pulse);line-height:1.1;margin:6px 0 4px}
+footer{padding:28px 20px 40px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.sdg div{grid-template-columns:1fr;gap:0}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ecg path{animation:none;stroke-dasharray:none}}
+</style>
+</head>
+<body>
+<header><nav><b>نبض</b><a href="#problem">المشكلة</a><a href="#solution">الحل</a><a href="#network">الشبكة</a><a href="#challenge">التحدي</a><a href="#tools">الأدوات</a><a href="#sdg">الأهداف</a><a href="#team">الفريق</a></nav></header>
+<main>
+<section class="hero">
+<div>
+<span class="tag">كابستون الصف الثاني (Network)</span><span class="tag">فريق 406212</span>
+<h1>نبض</h1>
+<p class="lead">نظام ذكي (NabdNet) يراقب شبكة المستشفى، ويكتشف سبب البطء قبل أن يشتكي الطبيب، ويقترح الحل وينفذه بعد موافقة مهندس الـIT.</p>
+<p class="mut">جرّب بنفسك: اضغط الزر وشاهد درجة صحة الشبكة تتغير.</p>
+</div>
+<div id="card" data-s="ok" aria-label="تجربة تفاعلية لدرجة صحة الشبكة">
+<div class="ring">
+<svg viewBox="0 0 128 128" aria-hidden="true"><circle cx="64" cy="64" r="52" fill="none" stroke="var(--line)" stroke-width="12"/><circle id="arc" cx="64" cy="64" r="52" fill="none" stroke="var(--c)" stroke-width="12" stroke-linecap="round" stroke-dasharray="300 400" transform="rotate(-90 64 64)"/></svg>
+<div><div id="num">92</div><div id="lab" aria-live="polite">الشبكة سليمة</div><div class="mut">درجة الصحة من 100</div></div>
+</div>
+<svg class="ecg" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path id="pd" pathLength="1" d="M0 30H40l6-8 6 8h8l5-24 8 48 5-24h10H120l6-8 6 8h8l5-24 8 48 5-24h10H200l6-8 6 8h8l5-24 8 48 5-24h10H300"/></svg>
+<div class="alert" id="al" role="status" hidden>إنذار: فتح صور الأشعة بطيء بسبب تحميل ضخم على شبكة الضيوف. هل نحدد سرعة شبكة الضيوف؟
+<div class="row"><button id="yes">موافقة وتنفيذ</button></div></div>
+<div class="row"><button id="inj" class="alt">حقن زحمة في الشبكة</button></div>
+</div>
+</section>
+
+<section id="problem">
+<h2>المشكلة</h2>
+<p>عندما تتباطأ شبكة المستشفى يتأخر فتح ملفات المرضى وصور الأشعة، ولا يعرف أحد السبب ولا وقت بدايته. يعلم فريق الـIT بالمشكلة بعد أن يشتكي الموظفون، ثم يشخّصها يدويًا، ويدفع الطاقم الطبي والمريض ثمن هذا الوقت.</p>
+<div class="needs"><div><h3>شبكة مستقرة وسريعة</h3>خدمات طبية رقمية لا تتوقف.</div><div><h3>اكتشاف مبكر</h3>معرفة المشكلة قبل أن تتفاقم.</div><div><h3>معرفة السبب</h3>شرح واضح لما حدث ولأي قسم.</div><div><h3>إصلاح أسرع</h3>تقليل الوقت بين العطل والحل.</div></div>
+</section>
+
+<section id="solution">
+<h2>الحل: نظام نبض</h2>
+<p>نظام واحد يجمع مراقبة الشبكة، وتحليل المشكلات، والتنبؤ بها، واقتراح الحلول، بواجهة عربية سهلة وبدون أجهزة إضافية. لا ينفذ أي إجراء إلا بعد موافقة مهندس IT، ثم يعيد القياس ليتأكد أن المشكلة انتهت.</p>
+<ol class="flow"><li>جمع البيانات</li><li>مراقبة الشبكة</li><li>اكتشاف المشكلة</li><li>تحليل السبب</li><li>اقتراح الحل</li><li>موافقة مهندس IT</li><li>تنفيذ الحل</li><li>اختبار الشبكة</li></ol>
+<p class="mut" style="margin-top:20px">درجة صحة الشبكة (Health Score) تُحسب من 100 وتُعرض بالألوان:</p>
+<div class="scale"><span style="--k:var(--ok)">80 فأكثر: سليمة</span><span style="--k:var(--warn)">من 50 إلى 79: تحذير</span><span style="--k:var(--bad)">أقل من 50: خطر</span></div>
+</section>
+
+<section id="network">
+<h2>شبكة المستشفى المحاكاة</h2>
+<p>نصمم شبكة مستشفى متوسطة الحجم على Cisco Packet Tracer (محاكي شبكات من سيسكو)، ونقسمها إلى شبكات افتراضية (VLANs) ليُراقب كل قسم على حدة.</p>
+<div class="tw"><table><thead><tr><th>القسم</th><th>VLAN</th><th>عنوان الشبكة</th></tr></thead><tbody>
+<tr><td>الإدارة</td><td class="n">10</td><td class="n">192.168.10.0/24</td></tr>
+<tr><td>الاستقبال والطوارئ</td><td class="n">20</td><td class="n">192.168.20.0/24</td></tr>
+<tr><td>الأشعة</td><td class="n">30</td><td class="n">192.168.30.0/24</td></tr>
+<tr><td>المعامل</td><td class="n">40</td><td class="n">192.168.40.0/24</td></tr>
+<tr><td>العناية المركزة</td><td class="n">50</td><td class="n">192.168.50.0/24</td></tr>
+<tr><td>الصيدلية</td><td class="n">60</td><td class="n">192.168.60.0/24</td></tr>
+<tr><td>السيرفرات</td><td class="n">70</td><td class="n">192.168.70.0/24</td></tr>
+<tr><td>المرضى والزوار</td><td class="n">80</td><td class="n">192.168.80.0/24</td></tr>
+<tr><td>إدارة الشبكة (IT)</td><td class="n">99</td><td class="n">192.168.99.0/24</td></tr></tbody></table></div>
+<p>الأجهزة: راوتر واحد، سويتش مركزي (Multilayer Switch)، 3 سويتشات وصول، سيرفر أو أكثر، من 10 إلى 15 جهاز كمبيوتر، ونقطة وصول Wi‑Fi لشبكة المرضى والزوار.</p>
+<p>شبكة المرضى والزوار معزولة عن الأجهزة الطبية، ويراقبها النظام ليكتشف الضغط قبل أن يؤثر على أولوية الخدمات الطبية.</p>
+</section>
+
+<section id="challenge">
+<h2>تحدي الكابستون</h2>
+<p>يعمل المشروع ضمن التحدي A: الزحمة والعدالة (Congestion &amp; Fairness)، أي ألا يستهلك جهاز واحد سرعة الشبكة كلها. هذه المتطلبات الرسمية للتحدي التي نقيس نجاحنا بها:</p>
+<div class="needs"><div><h3>الاكتشاف</h3>خلال دقيقتين على الأكثر (MTTD).</div><div><h3>الإصلاح</h3>خلال 10 دقائق على الأكثر (MTTR).</div><div><h3>حركة المتسبب</h3>تنخفض 50% على الأقل.</div><div><h3>دقة الاكتشاف</h3>4 من 5 حوادث، بدون إنذار كاذب.</div></div>
+</section>
+
+<section id="tools">
+<h2>الأدوات والتقنيات</h2>
+<h3>الشبكات</h3>
+<div class="chips"><span>Cisco Packet Tracer</span><span>VLANs</span><span>Trunking</span><span>Inter-VLAN Routing</span><span>DHCP</span><span>ACLs</span><span>QoS</span><span>SNMP</span><span>Syslog</span><span>SSH</span><span>ICMP</span></div>
+<h3>البرمجة والتحليل</h3>
+<div class="chips"><span>Python</span><span>Flask</span><span>SQLite</span><span>Pandas</span><span>Scikit-learn</span><span>Chart.js</span><span>HTML / CSS / JavaScript</span><span>Wireshark</span><span>GitHub</span><span>VS Code</span></div>
+</section>
+
+<section id="sdg">
+<h2>أهداف التنمية المستدامة</h2>
+<div class="sdg"><div><b>SDG 3</b><span>الصحة الجيدة والرفاه: شبكة أكثر استقرارًا تعني تأخرًا أقل في الخدمات الطبية.</span></div><div><b>SDG 9</b><span>الصناعة والابتكار والبنية التحتية: نظام تقني يحسّن البنية الرقمية للمستشفى.</span></div><div><b>SDG 8</b><span>العمل اللائق ونمو الاقتصاد: تقليل الوقت الضائع وتكاليف توقف الشبكة.</span></div></div>
+</section>
+
+<section id="team">
+<h2>الفريق</h2>
+<div class="no">406212</div>
+<p class="mut">مدرسة WE للتكنولوجيا التطبيقية (WE Applied Technology School)</p>
+<div class="team">
+<div class="m"><i aria-hidden="true">س</i><span><b>السيد أحمد عمارة</b><small>Elsayed Ahmed Omara</small></span></div>
+<div class="m"><i aria-hidden="true">م</i><span><b>مصطفى سامح جاد</b><small>Mostafa Sameh Gad</small></span></div>
+<div class="m"><i aria-hidden="true">ع</i><span><b>عبدالرحمن صقر</b><small>Abdelrahman Sakr</small></span></div>
+<div class="m"><i aria-hidden="true">ف</i><span><b>فاطمة محمود</b><small>Fatma Mahmoud</small></span></div>
+<div class="m"><i aria-hidden="true">س</i><span><b>سلمى صبري</b><small>Salma Sabry</small></span></div>
+</div>
+</section>
+</main>
+<footer>كابستون الصف الثاني (Network) 2026–2027. النظام يعمل على شبكة محاكاة ببيانات وهمية ولا يقرأ أي بيانات للمرضى.</footer>
+<script>
+const $=i=>document.getElementById(i),calm=$('pd').getAttribute('d'),noisy='M0 30l12-20 10 38 12-34 10 30 12-36 10 40 12-30 10 34 12-38 10 34 12-28 10 30 12-36 10 38 12-30 10 26 12-20 10 24 12-18 10 22 12-16 10 20H300',rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cur=92,raf;
+function paint(v){$('num').textContent=Math.round(v);$('arc').setAttribute('stroke-dasharray',(v*3.267)+' 400');$('card').dataset.s=v>=80?'ok':v>=50?'warn':'bad'}
+function go(to,done){cancelAnimationFrame(raf);const a=cur,t0=performance.now(),d=rm?0:900;(function f(t){const k=d?Math.min(1,(t-t0)/d):1;cur=a+(to-a)*k;paint(cur);k<1?raf=requestAnimationFrame(f):done&&done()})(t0)}
+paint(92);
+$('inj').onclick=()=>{$('inj').disabled=true;$('lab').textContent='جارٍ الفحص…';go(41,()=>{$('lab').textContent='خطر: فتح صور الأشعة بطيء';$('pd').setAttribute('d',noisy);$('al').hidden=false;$('yes').focus()})};
+$('yes').onclick=()=>{$('al').hidden=true;$('lab').textContent='جارٍ التنفيذ والتحقق…';go(88,()=>{$('lab').textContent='سليمة بعد الإصلاح';$('pd').setAttribute('d',calm);$('inj').disabled=false})};
+</script>
+</body>
+</html>
